@@ -8,10 +8,11 @@ import (
 
 //Planet stores information about a planetary body
 type Planet struct {
-	Name   string
-	Mass   float64
-	Vector *Vector
-	IsStar bool
+	Name     string
+	Mass     float64
+	Vector   *Vector
+	Velocity *Vector
+	IsStar   bool
 }
 
 //NewPlanet returns a pointer to new planet
@@ -20,6 +21,7 @@ func NewPlanet(name string, mass float64, x, y, z float64) *Planet {
 	planet.Name = name
 	planet.Mass = mass
 	planet.Vector = NewVector(x, y, z)
+	planet.Velocity = NewVector(0, 0, 0)
 	planet.IsStar = false
 
 	return &planet
