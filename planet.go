@@ -33,7 +33,8 @@ func NewStar(name string, mass float64, x, y, z float64) *Planet {
 	return planet
 }
 
-func (p *Planet) printName() {
+//PrintName prints the name of the planet
+func (p *Planet) PrintName() {
 	fmt.Print(p.Name)
 	fmt.Println()
 }

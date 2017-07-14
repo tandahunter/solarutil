@@ -9,9 +9,10 @@ func NewPlanetArray() *PlanetArray {
 	return &PlanetArray{}
 }
 
-func (p PlanetArray) printNames() {
+//PrintNames prints the name of all planets in the array
+func (p PlanetArray) PrintNames() {
 	for _, planet := range p {
-		planet.printName()
+		planet.PrintName()
 	}
 }
 
