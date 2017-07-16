@@ -18,12 +18,17 @@ func (p PlanetArray) PrintNames() {
 
 //GetPlanets returns a pointer to all planets where IsStar = false
 func (p PlanetArray) GetPlanets() *PlanetArray {
-	return p.getFilteredPlanets(false)
+	return p.getFilteredPlanets(false, "")
 }
 
 //GetStars returns a pointer to all stars where IsStar = true
 func (p PlanetArray) GetStars() *PlanetArray {
-	return p.getFilteredPlanets(true)
+	return p.getFilteredPlanets(true, "")
+}
+
+//GetPlanetsByName returns a pointer to all stars where Name = name
+func (p PlanetArray) GetPlanetsByName(name string) *PlanetArray {
+	return p.getFilteredPlanets(false, name)
 }
 
 //FirstOrDefault returns a pointer to the first or a new planet in the array
@@ -35,11 +40,11 @@ func (p PlanetArray) FirstOrDefault() *Planet {
 	return &Planet{}
 }
 
-func (p PlanetArray) getFilteredPlanets(isStar bool) *PlanetArray {
+func (p PlanetArray) getFilteredPlanets(isStar bool, name string) *PlanetArray {
 	toReturn := PlanetArray{}
 
 	for _, planet := range p {
-		if planet.IsStar == isStar {
+		if planet.IsStar == isStar && (name == "" || planet.Name == name) {
 			toReturn = append(toReturn, planet)
 		}
 	}

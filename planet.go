@@ -16,12 +16,12 @@ type Planet struct {
 }
 
 //NewPlanet returns a pointer to new planet
-func NewPlanet(name string, mass float64, x, y, z float64) *Planet {
+func NewPlanet(name string, mass float64, x, y, z float64, velocity *Vector) *Planet {
 	planet := Planet{}
 	planet.Name = name
 	planet.Mass = mass
 	planet.Vector = NewVector(x, y, z)
-	planet.Velocity = NewVector(0, 0, 0)
+	planet.Velocity = velocity
 	planet.IsStar = false
 
 	return &planet
@@ -29,7 +29,7 @@ func NewPlanet(name string, mass float64, x, y, z float64) *Planet {
 
 //NewStar returns pointer to new star
 func NewStar(name string, mass float64, x, y, z float64) *Planet {
-	planet := NewPlanet(name, mass, x, y, z)
+	planet := NewPlanet(name, mass, x, y, z, NewVector(0, 0, 0))
 	planet.IsStar = true
 
 	return planet
@@ -39,6 +39,12 @@ func NewStar(name string, mass float64, x, y, z float64) *Planet {
 func (p *Planet) PrintName() {
 	fmt.Print(p.Name)
 	fmt.Println()
+}
+
+//PrintVector prints the vector of the planet
+func (p *Planet) PrintVector() {
+	v := p.Vector
+	fmt.Printf("X:%f\nY:%f\nZ:%f\n", v.X, v.Y, v.Z)
 }
 
 //DistanceTo returns the distance between this and the specified body.
