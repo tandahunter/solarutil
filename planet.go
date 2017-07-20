@@ -2,55 +2,36 @@
 package solarutil
 
 import (
-	"fmt"
 	"math"
 )
 
 //Planet stores information about a planetary body
 type Planet struct {
-	Name     string
-	Mass     float64
-	Vector   *Vector
-	Velocity *Vector
-	IsStar   bool
+	ID             int     `json:"id"`
+	Name           string  `json:"name"`
+	Mass           float64 `json:"mass"`
+	Vector         *Vector `json:"vector"`
+	Velocity       *Vector `json:"velocity"`
+	ManouevreCount int     `json:"manouevreCount"`
 }
 
 //NewPlanet returns a pointer to new planet
-func NewPlanet(name string, mass float64, x, y, z float64, velocity *Vector) *Planet {
+func NewPlanet(id int, name string, mass, distance, speed float64) *Planet {
 	planet := Planet{}
+	planet.ID = id
 	planet.Name = name
 	planet.Mass = mass
-	planet.Vector = NewVector(x, y, z)
-	planet.Velocity = velocity
-	planet.IsStar = false
+	planet.Vector = NewVector(distance, 0, 0)
+	planet.Velocity = NewVector(0, 0, speed)
+	planet.ManouevreCount = 0
 
 	return &planet
 }
 
-//NewStar returns pointer to new star
-func NewStar(name string, mass float64, x, y, z float64) *Planet {
-	planet := NewPlanet(name, mass, x, y, z, NewVector(0, 0, 0))
-	planet.IsStar = true
-
-	return planet
-}
-
-//PrintName prints the name of the planet
-func (p *Planet) PrintName() {
-	fmt.Print(p.Name)
-	fmt.Println()
-}
-
-//PrintVector prints the vector of the planet
-func (p *Planet) PrintVector() {
-	v := p.Vector
-	fmt.Printf("X:%f\nY:%f\nZ:%f\n", v.X, v.Y, v.Z)
-}
-
-//DistanceTo returns the distance between this and the specified body.
-func (p *Planet) DistanceTo(p2 *Planet) float64 {
+//DistanceTo returns the distance between this and the specified star.
+func (p *Planet) DistanceTo(s *Star) float64 {
 	vectorA := *p.Vector
-	vectorB := *p2.Vector
+	vectorB := *s.Vector
 	pow := float64(2)
 
 	x := math.Pow(vectorA.X-vectorB.X, pow)
