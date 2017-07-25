@@ -5,9 +5,9 @@ import "math"
 
 //Vector stores coordinates in 3d space
 type Vector struct {
-	X float64
-	Y float64
-	Z float64
+	X float64 `json:"x"`
+	Y float64 `json:"y"`
+	Z float64 `json:"z"`
 }
 
 //NewVector returns a vector struct

@@ -7,12 +7,11 @@ import (
 
 //Planet stores information about a planetary body
 type Planet struct {
-	ID             int     `json:"id"`
-	Name           string  `json:"name"`
-	Mass           float64 `json:"mass"`
-	Vector         *Vector `json:"vector"`
-	Velocity       *Vector `json:"velocity"`
-	ManouevreCount int     `json:"manouevreCount"`
+	ID       int     `json:"id"`
+	Name     string  `json:"name"`
+	Mass     float64 `json:"mass"`
+	Vector   *Vector `json:"vector"`
+	Velocity *Vector `json:"velocity"`
 }
 
 //NewPlanet returns a pointer to new planet
@@ -23,7 +22,6 @@ func NewPlanet(id int, name string, mass, distance, speed float64) *Planet {
 	planet.Mass = mass
 	planet.Vector = NewVector(distance, 0, 0)
 	planet.Velocity = NewVector(0, 0, speed)
-	planet.ManouevreCount = 0
 
 	return &planet
 }
