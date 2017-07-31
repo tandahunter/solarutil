@@ -12,6 +12,7 @@ type Planet struct {
 	Mass     float64 `json:"mass"`
 	Vector   *Vector `json:"vector"`
 	Velocity *Vector `json:"velocity"`
+	Texture  string  `json:"texture"`
 }
 
 //NewPlanet returns a pointer to new planet

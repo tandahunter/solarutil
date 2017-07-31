@@ -27,3 +27,11 @@ func (p *PlanetArray) AddNewPlanet(id int, name string, mass, distance, speed fl
 	*p = append(*p, planet)
 	return planet
 }
+
+//AddNewTexturedPlanet creates a new textured planet and adds a pointer to the array
+func (p *PlanetArray) AddNewTexturedPlanet(id int, name string, mass, distance, speed float64, texture string) *Planet {
+	planet := NewPlanet(id, name, mass, distance, speed)
+	planet.Texture = texture
+	*p = append(*p, planet)
+	return planet
+}
